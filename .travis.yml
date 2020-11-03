@@ -11,12 +11,7 @@ env:
 before_script: 
   - cd $TEST_DIR && chmod +x $TEST_SCRIPT
   - docker login quay.io -u $ROBOT -p $ROBOT_TOKEN
-script: 
-  # Keep build from failing due to inactivity: https://github.com/travis-ci/travis-ci/issues/4190
-  - while sleep 9m; do echo "=====[ $SECONDS seconds still running ]====="; done &
-  - docker build $BUILD_DIR --tag $TAG
-  # Killing background sleep loop
-  - kill %1
+install: travis_wait 60 docker build $BUILD_DIR --tag $TAG
 after_script:
   - cd $TEST_DIR && bash $TEST_SCRIPT 
 # after_script:

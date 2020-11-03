@@ -50,6 +50,7 @@ RUN set -ex; \
 	apt-get install -y --no-install-recommends \
 		dpkg-dev \
 		flex \
+		build-essential \
 	; \
 	rm -r /var/lib/apt/lists/*; \
 	\

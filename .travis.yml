@@ -10,9 +10,9 @@ env:
     - TAG="$REPO:10.2.0"
 before_script: 
   - cd $TEST_DIR && chmod +x $TEST_SCRIPT
-install: 
   - docker login quay.io -u $ROBOT -p $ROBOT_TOKEN
-  - travis_wait 60 docker build $BUILD_DIR --tag $TAG
+# Workaround for long running build: https://github.com/travis-ci/travis-ci/issues/6934
+script: travis_wait 120 sleep infinity & build $BUILD_DIR --tag $TAG
 after_script:
   - cd $TEST_DIR && bash $TEST_SCRIPT 
 # after_script:

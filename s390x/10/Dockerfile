@@ -122,8 +122,8 @@ RUN set -ex; \
 		--enable-languages=c,c++,fortran,go \
 		$extraConfigureArgs \
 	; \
-	make -j "$(nproc)"; \
-	make install-strip; \
+	make -s -j "$(nproc)"; \
+	make -s install-strip; \
 	\
 	cd ..; \
 	\

@@ -9,11 +9,12 @@ env:
     - REPO="quay.io/ibmz/gcc"
     - TAG="$REPO:10.2.0"
 before_script: 
-  - pip install travis-wait-improved
   - cd $TEST_DIR && chmod +x $TEST_SCRIPT
   - docker login quay.io -u $ROBOT -p $ROBOT_TOKEN
 script: 
-  - travis-wait-improved --timeout 60m docker build $BUILD_DIR --tag $TAG
+  # Keep build from failing due to inactivity: https://github.com/travis-ci/travis-ci/issues/4190
+  - while sleep 9m; do echo "=====[ $SECONDS seconds still running ]====="; done &
+  - docker build $BUILD_DIR --tag $TAG
   - cd $TEST_DIR && bash $TEST_SCRIPT 
 # after_script:
 #   - docker push $REPO

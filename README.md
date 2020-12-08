@@ -1,8 +1,10 @@
 # Tags
-> _Built from [`quay.io/ibmz/buildpack-deps:focal`](https://quay.io/repository/ibmz/buildpack-deps?tab=info)_
--	[`3.9`](https://github.com/lcarcaramo/gcc/blob/master/s390x/10/Dockerfile) - [![Build Status](https://travis-ci.com/lcarcaramo/gcc.svg?branch=master)](https://travis-ci.com/lcarcaramo/gcc)
+> _Built from [`quay.io/ibm/buildpack-deps:focal`](https://quay.io/repository/ibm/buildpack-deps?tab=info)_
+-	`3.9` - [![Build Status](https://travis-ci.com/lcarcaramo/gcc.svg?branch=master)](https://travis-ci.com/lcarcaramo/gcc)
 
-# What is GCC?
+### __[Original Source Code](https://github.com/docker-library/gcc)__
+
+# GCC
 
 The GNU Compiler Collection (GCC) is a compiler system produced by the GNU Project that supports various programming languages. GCC is a key component of the GNU toolchain. The Free Software Foundation (FSF) distributes GCC under the GNU General Public License (GNU GPL). GCC has played an important role in the growth of free software, as both a tool and an example.
 
@@ -17,7 +19,7 @@ The GNU Compiler Collection (GCC) is a compiler system produced by the GNU Proje
 The most straightforward way to use this image is to use a gcc container as both the build and runtime environment. In your `Dockerfile`, writing something along the lines of the following will compile and run your project:
 
 ```dockerfile
-FROM quay.io/ibmz/gcc:10.2.0
+FROM quay.io/ibm/gcc:10.2.0
 COPY . /usr/src/myapp
 WORKDIR /usr/src/myapp
 RUN gcc -o myapp main.c
